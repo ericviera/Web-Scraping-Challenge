@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Mission to Mars</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    </head>
+    <body>
+        <!--Container for Mission to Mars Header-->
+        <div class="container-fluid">
+            <div class="jumbotron text-center">
+                <h1>Mission to Mars</h1>
+                <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+            </div>
+        </div>
+        
+        <!-- Latest news section-->
+        <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Latest Mars News</h2>
+                <h3>{{mars_news.news_title}}</h3>
+                <p>{{mars_news.news_p}}</p>
+            </div>
+        </div>
+        </div>
+        <!-- New Row for Image and Facts-->
+        <div class="container">
+        <div class="row">
+            <div class="col-md-08">
+                <h2>Featured Mars Image</h2>
+                <img src="{{mars_news.image_url}}" alt = "mars_image" width="700px">
+            </div>
+            <div class="col-md-04">
+                    <h2> Mars Data</h2>
+                    <div>
+                        {{ mars_news.tables|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- New Row for Mars Hemisphere Title-->
+        <div class="row">
+            <div class="col-md-8 offset-4">
+                <h2>Mars Hemispheres</h2>  
+            </div>
+        </div>
+       <!-- New Row for Mars Hemisphere images and names-->
+        <div class="row">
+            {% for hemisphere in mars_news.hemisphere_image_urls %}
+            <div class="col-md-6">
+                    <div class = "col-md-6">
+                            <div class = "thumbnail">
+                                <img width = "500px" src = "{{hemisphere.img_url}}">
+                                    <h3>{{hemisphere['title']}}</h3>
+                            </div>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </body>
+</html>
